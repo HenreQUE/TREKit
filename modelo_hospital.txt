@@ -1,0 +1,40 @@
+
+Modelo Conceitual:
+------------------
+1. **Profissional**: Representa os funcionários do hospital.
+   - Atributos: ID, Nome, Idade, CPF, Número_Profissional, Cargo, Setor.
+
+2. **Material_Cirúrgico**: Representa os materiais utilizados no hospital.
+   - Atributos: ID, Nome, Marca, Peso, Tamanho, Descrição, Categoria.
+
+3. **Esterilização**: Registra o processo de esterilização de materiais.
+   - Atributos: ID, ID_Material, ID_Profissional, Data_Higienização, Método, Status.
+
+4. **Estoque**: Controla o inventário de materiais no hospital.
+   - Atributos: ID, Localização, ID_Material, Quantidade_Disponível, Data_Ultima_Atualização.
+
+5. **Bloco_Cirúrgico**: Representa as cirurgias realizadas no hospital.
+   - Atributos: ID, Nome_Cirurgia, ID_Profissional, ID_Material, Data_Cirurgia, Status_Cirurgia.
+
+6. **Histórico_Estoque**: Registra as movimentações do estoque.
+   - Atributos: ID, ID_Material, Data_Entrada, Data_Saída, Quantidade_Retirada, ID_Profissional.
+
+
+
+Modelo Lógico:
+--------------
+Entidades e Relacionamentos:
+1. Profissional (ID_Profissional PRIMARY KEY, Nome, Idade, CPF, Número_Profissional, Cargo, Setor)
+   - RELACIONA-SE com Esterilização e Bloco_Cirúrgico.
+
+2. Material_Cirúrgico (ID_Material PRIMARY KEY, Nome, Marca, Peso, Tamanho, Descrição, Categoria)
+   - RELACIONA-SE com Esterilização, Estoque, Bloco_Cirúrgico e Histórico_Estoque.
+
+3. Esterilização (ID_Esterilização PRIMARY KEY, ID_Material FOREIGN KEY, ID_Profissional FOREIGN KEY, Data_Higienização, Método, Status).
+
+4. Estoque (ID_Estoque PRIMARY KEY, Localização, ID_Material FOREIGN KEY, Quantidade_Disponível, Data_Ultima_Atualização)
+   - RELACIONA-SE com Histórico_Estoque.
+
+5. Bloco_Cirúrgico (ID_Cirurgia PRIMARY KEY, Nome_Cirurgia, ID_Profissional FOREIGN KEY, ID_Material FOREIGN KEY, Data_Cirurgia, Status_Cirurgia).
+
+6. Histórico_Estoque (ID_Histórico PRIMARY KEY, ID_Material FOREIGN KEY, Data_Entrada, Data_Saída, Quantidade_Retirada, ID_Profissional FOREIGN KEY).
